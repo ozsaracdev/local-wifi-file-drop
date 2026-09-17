@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Wi-Fi File Drop</title>
+</head>
+<body style="font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; text-align: center;">
+
+    <h2>1. Send File to PC</h2>
+    {% if message %}
+        <p style="color: green; font-weight: bold;">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required><br><br>
+        <button type="submit" style="padding: 10px 20px; cursor: pointer;">Upload</button>
+    </form>
+
+    <hr style="margin: 40px 0;">
+
+    <h2>2. Download from PC</h2>
+    {% if files %}
+        <ul style="list-style: none; padding: 0;">
+            {% for file in files %}
+                <li style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+                    <span style="word-break: break-all;">{{ file }}</span>
+                    <a href="/download/{{ file }}" style="padding: 6px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">Download</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="color: gray;">No files uploaded yet.</p>
+    {% endif %}
+
+</body>
+</html>
